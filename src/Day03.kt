@@ -4,8 +4,8 @@ fun main() {
     fun part1(input: List<String>): Int {
         return input.withIndex().sumOf { (i, line) ->
             Regex("\\d+").findAll(line).sumOf {
-                if ((max(0, i - 1) .. min(input.size - 1, i + 1)).any { ii ->
-                    (max(0, it.range.first - 1) .. min(line.length - 1, it.range.last + 1)).any { jj ->
+                if ((max(0, i - 1) .. min(input.lastIndex, i + 1)).any { ii ->
+                    (max(0, it.range.first - 1) .. min(line.lastIndex, it.range.last + 1)).any { jj ->
                         input[ii][jj] != '.' && !input[ii][jj].isDigit()
                     }
                 }) it.value.toInt() else 0
@@ -30,8 +30,8 @@ fun main() {
                 if (c != '*') return@inner 0
 
                 val set = mutableSetOf<Int>()
-                for (ii in max(0, i - 1) .. min(input.size - 1, i + 1))
-                    for (jj in max(0, j - 1) .. min(line.length - 1, j + 1))
+                for (ii in max(0, i - 1) .. min(input.lastIndex, i + 1))
+                    for (jj in max(0, j - 1) .. min(line.lastIndex, j + 1))
                         if (id[ii][jj] != -1)
                             set.add(id[ii][jj])
 
