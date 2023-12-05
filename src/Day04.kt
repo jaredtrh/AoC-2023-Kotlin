@@ -13,7 +13,7 @@ fun main() {
     fun part2(input: List<String>): Int {
         var ans = 0
         var cards = 1
-        val future = mutableMapOf<Int, Int>().withDefault { 0 }
+        val future = IntArray(input.size) { 0 }
 
         for ((i, line) in input.withIndex()) {
             ans += cards
@@ -22,9 +22,9 @@ fun main() {
             val set = winning.trim().split(Regex(" +")).toSet()
 
             val f = nums.trim().split(Regex(" +")).count { set.contains(it) }
-            future[i + f] = future.getValue(i + f) + cards
+            future[i + f] += cards
             cards *= 2
-            cards -= future.getValue(i)
+            cards -= future[i]
         }
 
         return ans
