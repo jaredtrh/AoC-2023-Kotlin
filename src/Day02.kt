@@ -1,3 +1,5 @@
+import kotlin.math.*
+
 fun main() {
     fun part1(input: List<String>): Int {
         return input.withIndex().sumOf { (i, line) ->
@@ -18,9 +20,13 @@ fun main() {
     fun part2(input: List<String>): Int {
         return input.sumOf { line ->
             line.split(": ")[1].split("; ", ", ")
-                .map { it.split(' ') }
-                .groupBy { it[1] }
-                .map { entry -> entry.value.maxOf { it[0].toInt() } }
+                .map {
+                    val (xs, color) = it.split(' ')
+                    Pair(xs.toInt(), color)
+                }
+                .groupingBy { it.second }
+                .aggregate { _, acc: Int?, (x, _), first -> if (first) x else max(acc!!, x) }
+                .values
                 .reduce(Int::times)
         }
     }
