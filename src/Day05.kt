@@ -23,7 +23,7 @@ fun main() {
     fun part1(input: List<String>): Long {
         val allMaps = getAllMaps(input)
 
-        return input[0].split(": ")[1].split(' ').map { it.toLong() }.minOf { seed ->
+        return input[0].split(": ")[1].split(' ').asSequence().map { it.toLong() }.minOf { seed ->
             allMaps.fold(seed) { acc, maps ->
                 var idx = maps.binarySearchBy(acc) { it.second + it.third - 1 }
                 if (idx < 0) idx = -idx - 1
@@ -39,8 +39,7 @@ fun main() {
     fun part2(input: List<String>): Long {
         val allMaps = getAllMaps(input)
 
-        return input[0].split(": ")[1]
-            .split(' ')
+        return input[0].split(": ")[1].split(' ').asSequence()
             .map { it.toLong() }
             .chunked(2)
             .minOf { (start, segLen) ->

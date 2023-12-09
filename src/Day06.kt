@@ -8,8 +8,8 @@ fun main() {
         )
 
     fun part1(input: List<String>): Long {
-        return input[0].split(':')[1].trim().split(Regex(" +")).map { it.toLong() }
-            .zip(input[1].split(':')[1].trim().split(Regex(" +")).map { it.toLong() })
+        return input[0].split(':')[1].trim().split(Regex(" +")).asSequence().map { it.toLong() }
+            .zip(input[1].split(':')[1].trim().split(Regex(" +")).asSequence().map { it.toLong() })
             .map { (time, dist) ->
                 val (l, r) = roots(-1L, time, -dist)
                 ceil(r).toLong() - floor(l).toLong() - 1

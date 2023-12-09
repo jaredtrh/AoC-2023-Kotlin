@@ -1,6 +1,6 @@
 fun main() {
     fun part1(input: List<String>): Long {
-        return input.map { line -> line.split(' ').map { it.toInt() } }.sumOf { history ->
+        return input.asSequence().map { line -> line.split(' ').map { it.toInt() } }.sumOf { history ->
             var list = history
             var last = 0L
             while (list.any { it != 0 }) {
@@ -12,7 +12,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Long {
-        return input.map { line -> line.split(' ').map { it.toInt() } }.sumOf { history ->
+        return input.asSequence().map { line -> line.split(' ').map { it.toInt() } }.sumOf { history ->
             var list = history
             var first = 0L
             var odd = false
