@@ -13,11 +13,13 @@ fun main() {
             dp.fill(1, 0, idx + 1)
             for (i in g.indices) {
                 val dpn = LongArray(s.length + 1)
-                dpn[g[i]] = if (s[g[i] - 1] != '#') dpn[g[i] - 1] else 0
+                if (s[g[i] - 1] != '#')
+                    dpn[g[i]] = dpn[g[i] - 1]
                 if (cnt[g[i]] == 0 && i == 0)
                     dpn[g[i]] += 1L
                 for (j in g[i] + 1 .. s.length) {
-                    dpn[j] = if (s[j - 1] != '#') dpn[j - 1] else 0
+                    if (s[j - 1] != '#')
+                        dpn[j] = dpn[j - 1]
                     if (cnt[j] == cnt[j - g[i]] && s[j - g[i] - 1] != '#')
                         dpn[j] += dp[j - g[i] - 1]
                 }
