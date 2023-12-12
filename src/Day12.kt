@@ -11,18 +11,20 @@ fun main() {
             var idx = s.indexOf('#')
             if (idx == -1) idx = s.length
             dp.fill(1, 0, idx + 1)
-            for (i in g.indices) {
+            for (sz in g) {
                 val dpn = LongArray(s.length + 1)
-                if (s[g[i] - 1] != '#')
-                    dpn[g[i]] = dpn[g[i] - 1]
-                if (cnt[g[i]] == 0 && i == 0)
-                    dpn[g[i]] += 1L
-                for (j in g[i] + 1 .. s.length) {
+
+                if (s[sz - 1] != '#')
+                    dpn[sz] = dpn[sz - 1]
+                if (cnt[sz] == 0)
+                    dpn[sz] += dp[0]
+                for (j in sz + 1 .. s.length) {
                     if (s[j - 1] != '#')
                         dpn[j] = dpn[j - 1]
-                    if (cnt[j] == cnt[j - g[i]] && s[j - g[i] - 1] != '#')
-                        dpn[j] += dp[j - g[i] - 1]
+                    if (cnt[j] == cnt[j - sz] && s[j - sz - 1] != '#')
+                        dpn[j] += dp[j - sz - 1]
                 }
+
                 dp = dpn
             }
             dp.last()
