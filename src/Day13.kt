@@ -44,8 +44,6 @@ fun main() {
 
     fun part2(input: List<String>): Int {
         return getGrids(input).sumOf { grid ->
-
-
             for (i in 1 ..< grid.size) {
                 var neq = false
                 var k = 0
