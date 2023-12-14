@@ -7,7 +7,7 @@ fun main() {
                 if (s[i - 1] == '.') cnt[i] += 1
             }
 
-            var dp = LongArray( s.length + 1)
+            var dp = LongArray(s.length + 1)
             var idx = s.indexOf('#')
             if (idx == -1) idx = s.length
             dp.fill(1, 0, idx + 1)
