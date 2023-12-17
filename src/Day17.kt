@@ -30,15 +30,15 @@ fun main() {
                     di == -cell.di && dj == -cell.dj ||
                     if (di == cell.di && dj == cell.dj) cell.c == mx else cell.c < mn) continue
 
-                val nextCell = cell.copy(
-                    i = cell.i + di, j = cell.j + dj,
-                    di = di, dj = dj,
-                    c = if (di == cell.di && dj == cell.dj) cell.c + 1 else 1
+                val nextCell = Cell(
+                    cell.i + di, cell.j + dj,
+                    di, dj,
+                    if (di == cell.di && dj == cell.dj) cell.c + 1 else 1
                 )
                 val nd = d + input[nextCell.i][nextCell.j].digitToInt()
                 if (nd < dist.getOrDefault(nextCell, Int.MAX_VALUE)) {
                     dist[nextCell] = nd
-                    pq.add(Pair(nextCell, dist[nextCell]!!))
+                    pq.add(Pair(nextCell, nd))
                 }
             }
         }
