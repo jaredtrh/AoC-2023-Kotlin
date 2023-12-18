@@ -4,7 +4,6 @@ fun main() {
         // this https://en.wikipedia.org/wiki/Shoelace_formula#Trapezoid_formula but rectangles
         var area = 0L
         var border = 0L // 4x actual border area
-        var x = 0
         var y = 0
         var prevDir = plan.last().first
         for ((dir, meters) in plan) {
@@ -21,12 +20,10 @@ fun main() {
                 'L' -> {
                     area -= meters.toLong() * y
                     border += if (prevDir == 'D') 3 else 1
-                    x -= meters
                 }
                 'R' -> {
                     area += meters.toLong() * y
                     border += if (prevDir == 'U') 3 else 1
-                    x += meters
                 }
             }
             prevDir = dir
