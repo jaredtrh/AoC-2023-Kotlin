@@ -121,16 +121,13 @@ fun main() {
                     cycle = cycle or bit
                     cur = tos[if (tos[0] in flips) 0 else 1]
                 } else {
-                    if (tos[0] !in flips) {
-                        cycle = cycle or bit
-                        break
-                    }
+                    if (tos[0] !in flips) break
                     cur = tos[0]
                 }
                 bit = bit shl 1
             }
 
-            cycle.toLong()
+            (cycle or bit).toLong()
         }.reduce(Long::times)
     }
 
