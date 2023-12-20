@@ -105,7 +105,7 @@ fun main() {
         // (smallest integer with all important bits on)
         // - on the press that activates the conjunction, low pulses are sent to the first and all off flip-flops
         // - sending a low pulse to the ith flip-flop is like adding 2^i
-        // - important bits plus non-important bits gives 2^(n-1) with n as the number of bits which when incremented
+        // - important bits plus non-important bits gives 2^n-1 with n as the number of bits which when incremented
         // becomes 0 (unsigned overflow)
         // (eg: 11011001 + 00100110 + 00000001 = 00000000)
         // - since it became 0 we have reached the initial state (all flip-flops off) and this is just a cycle
