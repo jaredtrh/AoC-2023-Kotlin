@@ -13,7 +13,7 @@ fun main() {
                     rules.asSequence().take(rules.lastIndex).map {
                         val (rule, go) = it.split(':')
                         Pair(
-                            if (rule.contains('<')) {
+                            if ('<' in rule) {
                                 val (category, value) = rule.split('<')
                                 Rule(category[0], value.toInt(), true)
                             } else {
@@ -100,9 +100,9 @@ fun main() {
         return combinations
     }
 
-    val testInput1 = readInput("Day19_test")
-    check(part1(testInput1) == 19114)
-    check(part2(testInput1) == 167409079868000L)
+    val testInput = readInput("Day19_test")
+    check(part1(testInput) == 19114)
+    check(part2(testInput) == 167409079868000L)
 
     val input = readInput("Day19")
     part1(input).println()

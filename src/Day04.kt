@@ -5,7 +5,7 @@ fun main() {
             val set = winning.trim().split(Regex(" +")).toSet()
 
             nums.trim().split(Regex(" +")).fold(1) { acc, x ->
-                if (set.contains(x)) acc * 2 else acc
+                if (x in set) acc * 2 else acc
             } / 2
         }
     }
@@ -21,7 +21,7 @@ fun main() {
             val (winning, nums) = line.split(':')[1].split('|')
             val set = winning.trim().split(Regex(" +")).toSet()
 
-            val f = nums.trim().split(Regex(" +")).count { set.contains(it) }
+            val f = nums.trim().split(Regex(" +")).count { it in set }
             future[i + f] += cards
             cards *= 2
             cards -= future[i]

@@ -23,7 +23,7 @@ fun main() {
 
         val grids: MutableList<List<CharArray>> = mutableListOf()
         val idx: MutableMap<String, Int> = mutableMapOf()
-        while (!idx.contains(grid.joinToString("") { it.joinToString("") })) {
+        while (grid.joinToString("") { it.joinToString("") } !in idx) {
             idx[grid.joinToString("") { it.joinToString("") }] = grids.size
             grids.add(grid.map { it.copyOf() })
 

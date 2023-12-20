@@ -1,12 +1,12 @@
 fun main() {
     fun handStrength(handMap: Map<Int, Int>): Int =
-        if (handMap.contains(5)) {
+        if (6 in handMap) {
             6
-        } else if (handMap.contains(4)) {
+        } else if (4 in handMap) {
             5
-        } else if (handMap.contains(3)) {
-            if (handMap.contains(2)) 4 else 3
-        } else if (handMap.contains(2)) {
+        } else if (3 in handMap) {
+            if (2 in handMap) 4 else 3
+        } else if (2 in handMap) {
             if (handMap[2] == 2) 2 else 1
         } else {
             0
