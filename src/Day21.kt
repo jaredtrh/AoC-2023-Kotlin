@@ -44,7 +44,7 @@ fun main() {
         // answer is made up of a combination of these 5 parts
         // assume 26501365 - n / 2 is divisible by n so the diamond stops exactly at the border
         // let x = (26501365 - n / 2) / n = (26501365 - 131 / 2) / 131 = 202300 (2023 + 00 easter egg?)
-        // first count diamonds: x^2 * (odd cells in diamond) + (x + 1)^2 * (even cells in diamond)
+        // first count diamonds: (x + 1)^2 * (odd cells in diamond) + x^2 * (even cells in diamond)
         // then count top left: x * (x + 1) * (odd cells in top left) + (x + 1) * x * (even cells in top left)
         // since other corners are rotation symmetric, it turns out we can just calculate x * (x + 1) * other
         // where other is the sum of odd and even cells for all 4 corners or cells not in the diamond
