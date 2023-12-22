@@ -89,15 +89,17 @@ fun main() {
         val bricks = getBricks(input)
         val (adj, cnt) = getGraph(bricks)
 
-        var fall = -bricks.size
+        var fall = 0
         for (i in bricks.indices) {
             val c = cnt.toMutableList()
-            c[i] = 1
             fun dfs(i: Int) {
-                c[i] -= 1
-                if (c[i] > 0) return
-                fall += 1
-                for (j in adj[i]) dfs(j)
+                for (j in adj[i]) {
+                    c[j] -= 1
+                    if (c[j] == 0) {
+                        fall += 1
+                        dfs(j)
+                    }
+                }
             }
             dfs(i)
         }
