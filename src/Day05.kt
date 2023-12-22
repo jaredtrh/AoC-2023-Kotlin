@@ -7,7 +7,7 @@ fun main() {
         var i = 3
         while (i < input.size) {
             val maps: MutableList<Triple<Long, Long, Long>> = mutableListOf()
-            while (i < input.size && input[i].any()) {
+            while (i < input.size && input[i].isNotEmpty()) {
                 val (dst, src, len) = input[i].split(' ').map { it.toLong() }
                 maps.add(Triple(dst, src, len))
                 i += 1

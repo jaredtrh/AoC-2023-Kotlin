@@ -4,7 +4,7 @@ fun main() {
     data class Rule(val category: Char, val value: Int, val lt: Boolean)
 
     fun getWorkflows(input: List<String>): Map<String, Pair<List<Pair<Rule, String>>, String>> =
-        input.asSequence().takeWhile { it.any() }.map { line ->
+        input.asSequence().takeWhile { it.isNotEmpty() }.map { line ->
             val (name, s) = line.split('{')
             val rules = s.substring(0, s.lastIndex).split(',')
             Pair(
@@ -31,7 +31,7 @@ fun main() {
     fun part1(input: List<String>): Int {
         val workflows = getWorkflows(input)
 
-        return input.takeLastWhile { it.any() }.sumOf { line ->
+        return input.takeLastWhile { it.isNotEmpty() }.sumOf { line ->
             val ratings = line.substring(1, line.lastIndex).split(',').associate {
                 val (category, value) = it.split('=')
                 Pair(category[0], value.toInt())

@@ -54,7 +54,7 @@ fun main() {
             val queue = ArrayDeque(map["broadcaster"]!!.map {
                 Triple(it, "broadcaster", false)
             })
-            while (queue.any()) {
+            while (queue.isNotEmpty()) {
                 val (module, prev, high) = queue.removeFirst()
                 if (high)
                     highs += 1
