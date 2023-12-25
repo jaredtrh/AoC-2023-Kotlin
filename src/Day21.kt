@@ -52,7 +52,7 @@ fun main() {
         grid[grid.size / 2][grid.size / 2] = '.'
         val diamond = arrayOf(0, 0)
         var other = 0
-        val dfs = DeepRecursiveFunction<Pair<Int, Int>, Unit> { (i, j) ->
+        DeepRecursiveFunction<Pair<Int, Int>, Unit> { (i, j) ->
             if (i !in grid.indices || j !in grid.indices || grid[i][j] != '.')
                 return@DeepRecursiveFunction
             grid[i][j] = '*'
@@ -66,8 +66,7 @@ fun main() {
             callRecursive(Pair(i + 1, j))
             callRecursive(Pair(i, j - 1))
             callRecursive(Pair(i, j + 1))
-        }
-        dfs(Pair(grid.size / 2, grid.size / 2))
+        }(Pair(grid.size / 2, grid.size / 2))
 
         val x = 26501365L / grid.size
         return (x + 1) * (x + 1) * diamond[1] +

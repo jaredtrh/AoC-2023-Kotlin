@@ -4,7 +4,7 @@ fun main() {
         // fix a source and enumerate sinks
         // min-cut with ford-fulkerson O(m * F) where F = 3
         // total O(n * m)
-        data class Edge(val to: String, var cap: Boolean)
+        data class Edge(val to: String, val rev: Int, var cap: Boolean)
 
         val compSet: MutableSet<String> = mutableSetOf()
         val edges: MutableList<Pair<String, String>> = mutableListOf()
@@ -22,8 +22,10 @@ fun main() {
         for (sink in comps.asSequence().drop(1)) {
             val adj: MutableMap<String, MutableList<Edge>> = mutableMapOf()
             for ((u, v) in edges) {
-                adj.getOrPut(u) { mutableListOf() }.add(Edge(v, true))
-                adj.getOrPut(v) { mutableListOf() }.add(Edge(u, true))
+                adj.getOrPut(u) { mutableListOf() }.add(Edge(v, adj[v]?.size ?: 0, true))
+                adj.getOrPut(v) { mutableListOf() }.add(Edge(u, adj[u]!!.lastIndex, false))
+                adj.getOrPut(v) { mutableListOf() }.add(Edge(u, adj[u]!!.size, true))
+                adj.getOrPut(u) { mutableListOf() }.add(Edge(v, adj[v]!!.lastIndex, false))
             }
 
             val vis: MutableSet<String> = mutableSetOf()
@@ -35,6 +37,7 @@ fun main() {
                 for (edge in adj[comp]!!) {
                     if (edge.cap && dfs(edge.to)) {
                         edge.cap = false
+                        adj[edge.to]!![edge.rev].cap = true
                         return true
                     }
                 }
