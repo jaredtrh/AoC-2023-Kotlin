@@ -96,7 +96,7 @@ fun main() {
         // gaussian elimination
         for (i in mat.indices) {
             // find non-zero in column and swap it
-            for (j in i..< mat.size) {
+            for (j in i ..< mat.size) {
                 if (mat[j][i] != 0.0) {
                     mat[i] = mat[j].also { mat[j] = mat[i] }
                     break
